@@ -30,7 +30,7 @@ Deploy a ELK Stack with Terraform
 *terrafomr apply --auto-approve*
 ```
 
-# Manual Steps post deployment
+## Manual Steps post deployment
 
 ```js
 - Deployed Lambda function (i.e. terraform-demo-lambda-wiringfunction) needs to be executed before accessing the kibana
@@ -38,7 +38,7 @@ Deploy a ELK Stack with Terraform
 ```
 
 
-### Cleaning up
+## Cleaning up
 
 You can destroy this cluster entirely by running:
 
