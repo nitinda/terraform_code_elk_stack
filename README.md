@@ -44,7 +44,7 @@ terrafomr apply --auto-approve
 
 ## Diagram
 
-![Diagram](./images/Log-Analytics-Using-Kibana.png)
+![Diagram](./images/LogAnalytics-Kibana.png)
 
 
 ----
