@@ -20,29 +20,40 @@ Deploy a ELK Stack with Terraform
 14. vpc flow logs
 
 
+----
+
 ## How to use this example
 
 ```bash
-*git clone git@github.com:nitinda/terraform_code_elk_stack.git*
-*cd terraform_visualize_cloudtrails/layer*
-*terraform init*
-*terraform plan*
-*terrafomr apply --auto-approve*
+git clone git@github.com:nitinda/terraform_code_elk_stack.git
+cd terraform_visualize_cloudtrails/layer
+terraform init
+terraform plan
+terrafomr apply --auto-approve
 ```
+
 
 ## Manual Steps post deployment
 
-```js
+```
 - Deployed Lambda function (i.e. terraform-demo-lambda-wiringfunction) needs to be executed before accessing the kibana
     - Create test evnet, this function will create Cognito user (i.e. - kibana default password : Abcd1234!)
 ```
 
+----
+
+## Diagram
+
+![Diagram](./images/Log-Analytics-Using-Kibana.png)
+
+
+----
 
 ## Cleaning up
 
 You can destroy this cluster entirely by running:
 
 ```bash
-*terraform plan -destroy*
-*terraform destroy --force --auto-approve*
+terraform plan -destroy
+terraform destroy --force --auto-approve
 ```
