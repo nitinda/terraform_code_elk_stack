@@ -13,6 +13,11 @@ Deploy a ELK Stack with Terraform
 7. Autoscaling group and Launch Template
 8. S3 Bucket for audit trail logs
 9. lambda funtion for wiring Kibana and Cognito, for transfer VPC-flow-log/cloudtrail logs from cloudwatch logs to Elastic Search
+10. Cognito User pool, Identity Pool
+11. Cloudwatch log groups
+12. Cloudwatch logs subscriptions
+13. Cloudtrail
+14. vpc flow logs
 
 
 ## How to use this example
@@ -25,10 +30,13 @@ terraform plan
 terrafomr apply --auto-apporove
 ```
 
+# Manual Steps post deployment
 
-```bash
-#Manual Steps
+```js
+- Deployed Lambda function (i.e. terraform-demo-lambda-wiringfunction) needs to be executed before accessing the kibana
+    - Create test evnet, this function will create Cognito user (i.e. - kibana default password : Abcd1234!)
 ```
+
 
 ### Cleaning up
 
