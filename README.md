@@ -23,11 +23,11 @@ Deploy a ELK Stack with Terraform
 ## How to use this example
 
 ```bash
-git clone git@github.com:nitinda/terraform_code_elk_stack.git
-cd terraform_visualize_cloudtrails/layer
-terraform init
-terraform plan
-terrafomr apply --auto-apporove
+*git clone git@github.com:nitinda/terraform_code_elk_stack.git*
+*cd terraform_visualize_cloudtrails/layer*
+*terraform init*
+*terraform plan*
+*terrafomr apply --auto-approve*
 ```
 
 # Manual Steps post deployment
@@ -43,6 +43,6 @@ terrafomr apply --auto-apporove
 You can destroy this cluster entirely by running:
 
 ```bash
-terraform plan -destroy
-terraform destroy  --force
+*terraform plan -destroy*
+*terraform destroy --force --auto-approve*
 ```
