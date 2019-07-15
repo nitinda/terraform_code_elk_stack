@@ -13,3 +13,5 @@ variable "cloud_watch_logs_group_arn_cloudtrail" {
 variable "cloud_watch_logs_role_arn" {
   description = "description"
 }
+
+variable depends_on { default = [], type = "list"}

@@ -23,7 +23,6 @@ variable "vpc_id" {
   description = "description"
 }
 
-
 # data "aws_acm_certificate" "demo-acm-certificate" {
 #   statuses = ["ISSUED"]
 #   types    = ["AMAZON_ISSUED"]

@@ -68,6 +68,8 @@ module "aws_resources_module_cloudtrail" {
   s3_bucket_name = "${module.aws_resources_module_s3.s3_bucket_name}"
   cloud_watch_logs_group_arn_cloudtrail = "${module.aws_resources_module_cloudwatch_logs.cloud_watch_logs_group_arn_cloudtrail}"
   cloud_watch_logs_role_arn = "${module.aws_resources_module_cloudwatch_logs.cloud_watch_logs_role_arn}"
+
+  depends_on = ["${module.aws_resources_module_s3.s3_block_public_access_id}"]
 }
 
 module "aws_resources_module_es" {
@@ -83,6 +85,9 @@ module "aws_resources_module_es" {
   cognito_user_pool_endpoint = "${module.aws_resources_module_cognito.cognito_user_pool_endpoint}"
   cognito_identity_pool_id = "${module.aws_resources_module_cognito.cognito_identity_pool_id}"
   cognito_iam_role_arn = "${module.aws_resources_module_cognito.cognito_iam_role_arn}"
+
+  depends_on = ["${module.aws_resources_module_cognito.cognito_identity_pool_roles_attachment_id}"]
+
 }
 
 module "aws_resources_module_lambda" {

@@ -13,10 +13,13 @@ resource "aws_lb" "demo-application-loadbalancer" {
 
 resource "aws_lb_listener" "demo-application-loadbalancer-listener" {
   load_balancer_arn = "${aws_lb.demo-application-loadbalancer.arn}"
-  # port              = "443"
-  # protocol          = "HTTPS"
+  #### HTTP Listener
   port              = "80"
   protocol          = "HTTP"
+
+  #### HTTPS Listener
+  # port              = "443"
+  # protocol          = "HTTPS"
   # ssl_policy        = "ELBSecurityPolicy-2016-08"
   # certificate_arn   = "${data.aws_acm_certificate.demo-acm-certificate.arn}"
 

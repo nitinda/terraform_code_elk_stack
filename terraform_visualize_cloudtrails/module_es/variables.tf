@@ -22,3 +22,5 @@ variable "cognito_user_pool_endpoint" {
 variable "cognito_iam_role_arn" {
   description = "description"
 }
+
+variable depends_on { default = [], type = "list"}

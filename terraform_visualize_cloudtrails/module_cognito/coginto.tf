@@ -23,7 +23,7 @@ resource "aws_cognito_identity_pool" "demo-cognito-identity-pool" {
   identity_pool_name               = "terraform demo cognito identity pool"
   allow_unauthenticated_identities = true
   # cognito_identity_providers {
-  #   client_id               = "${aws_cognito_user_pool_client.demo-cognito-user-pool-client.id}"
+  #   client_id               = "589v49u5pk92rvj9b9rcpd93o8"
   #   provider_name           = "${aws_cognito_user_pool.demo-cognoti-user-pool.endpoint}"
   #   server_side_token_check = true
   # }

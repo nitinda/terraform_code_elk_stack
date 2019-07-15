@@ -19,7 +19,7 @@ resource "aws_lambda_function" "demo-lambda-wiringfunction" {
 
 resource "aws_lambda_function" "demo-lambda-cloudtrail-logstoelasticsearch" {
     filename         = "../module_lambda/lambda_function/terraform-demo-lambda-cloudtrail-logstoelasticsearch.zip"
-    function_name    = "terraform-demo-lambda-cloudtrail-logstoelasticsearch"
+    function_name    = "terraform-demo-lambda-logstoelasticsearch"
     description      = "CloudWatch Logs to Amazon ES streaming"
     role             = "${aws_iam_role.demo-iam-role-lambda-cwlpolicyforstreaming.arn}"
     handler          = "index.handler"

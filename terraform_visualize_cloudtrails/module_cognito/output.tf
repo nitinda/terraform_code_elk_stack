@@ -13,3 +13,7 @@ output "cognito_user_pool_endpoint" {
 output "cognito_iam_role_arn" {
   value = "${aws_iam_role.demo-iam-role-cognito.arn}"
 }
+
+output "cognito_identity_pool_roles_attachment_id" {
+  value = "${aws_cognito_identity_pool_roles_attachment.demo-iam-role-attachment-cognito.id}"
+}

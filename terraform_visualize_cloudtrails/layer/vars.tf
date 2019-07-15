@@ -8,3 +8,4 @@ variable "vpc_cidr_block" {
   description = "vpc CIDR range"
   default     = "198.19.0.0/16"
 }
+
