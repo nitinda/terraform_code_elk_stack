@@ -1,12 +1,11 @@
 
 resource "aws_vpc" "demo-vpc" {
   cidr_block = "172.16.0.0/16"
+  enable_dns_hostnames = true
 
-  tags = "${
-    map(
-     "Name", "terraform-demo-vpc",
-    )
-  }"
+  tags = "${merge(var.common_tags, map(
+    "Name", "terraform-demo-vpc",
+  ))}"
 }
 
 resource "aws_subnet" "demo-subnet-public" {
@@ -15,11 +14,9 @@ resource "aws_subnet" "demo-subnet-public" {
   cidr_block        = "172.16.${count.index}.0/24"
   availability_zone = "${data.aws_availability_zones.demo-available.names[count.index]}"
 
-  tags = "${
-    map(
-     "Name", "terraform-demo-subnet-public-${count.index}",
-    )
-  }"
+  tags = "${merge(var.common_tags, map(
+    "Name", "terraform-demo-subnet-public-${count.index}",
+  ))}"
 }
 
 resource "aws_subnet" "demo-subnet-private" {
@@ -28,27 +25,26 @@ resource "aws_subnet" "demo-subnet-private" {
   cidr_block        = "172.16.${count.index+2}.0/24"
   availability_zone = "${data.aws_availability_zones.demo-available.names[count.index]}"
 
-  tags = "${
-    map(
-     "Name", "terraform-demo-subnet-private-${count.index}",
-    )
-  }"
+  tags = "${merge(var.common_tags, map(
+    "Name", "terraform-demo-subnet-private-${count.index}",
+  ))}"
 }
 
 resource "aws_internet_gateway" "demo-internet-gateway" {
   vpc_id = "${aws_vpc.demo-vpc.id}"
 
-  tags = {
-    Name = "terraform-demo-internet-gateway"
-  }
+  tags = "${merge(var.common_tags, map(
+    "Name", "terraform-demo-internet-gateway",
+  ))}"
 }
 
 resource "aws_eip" "demo-eip" {
   count = 2
-  vpc   = true
-  tags = {
-    Name = "terraform-demo-eip-${count.index}"
-  }
+  vpc = true
+
+  tags = "${merge(var.common_tags, map(
+    "Name", "terraform-demo-eip-${count.index}",
+  ))}"
 }
 
 resource "aws_nat_gateway" "demo-nat-gateway" {
@@ -57,9 +53,9 @@ resource "aws_nat_gateway" "demo-nat-gateway" {
   subnet_id     = "${aws_subnet.demo-subnet-public.*.id[count.index]}"
   depends_on    = ["aws_internet_gateway.demo-internet-gateway"]
 
-  tags = {
-    Name = "terraform-demo-nat-gateway-${count.index}"
-  }
+  tags = "${merge(var.common_tags, map(
+    "Name", "terraform-demo-nat-gateway-${count.index}",
+  ))}"
 }
 
 # Route Tables and Routes
@@ -72,9 +68,9 @@ resource "aws_route_table" "demo-route-table-dmz" {
     gateway_id = "${aws_internet_gateway.demo-internet-gateway.id}"
   }
 
-  tags {
-    Name = "terraform-demo-route-table-public"
-  }
+  tags = "${merge(var.common_tags, map(
+    "Name", "terraform-demo-route-table-public",
+  ))}"
 }
 
 resource "aws_route_table_association" "demo-route-table-association-dmz" {
@@ -87,9 +83,9 @@ resource "aws_route_table" "demo-route-table-privdmz" {
   count  = 2
   vpc_id = "${aws_vpc.demo-vpc.id}"
 
-  tags {
-    Name = "terraform-demo-route-table-private-${count.index}"
-  }
+  tags = "${merge(var.common_tags, map(
+    "Name", "terraform-demo-route-table-private-${count.index}",
+  ))}"
 }
 
 resource "aws_route_table_association" "demo-route-table-association-privdmz" {
@@ -105,4 +101,3 @@ resource "aws_route" "demo-privdmz-routes-nat" {
   nat_gateway_id         = "${aws_nat_gateway.demo-nat-gateway.*.id[count.index]}"
   depends_on             = ["aws_route_table.demo-route-table-dmz"]
 }
-

@@ -11,6 +11,8 @@ resource "aws_elasticsearch_domain" "demo-es-domain" {
     dedicated_master_count = 3
   }
 
+  tags = "${var.common_tags}"
+
   snapshot_options {
     automated_snapshot_start_hour = 23
   }
@@ -20,11 +22,6 @@ resource "aws_elasticsearch_domain" "demo-es-domain" {
       volume_type = "gp2"
       volume_size = "10"
   }
-
-  # vpc_options {
-  #     subnet_ids = ["${var.es_subnet_ids}"]
-  #     security_group_ids = ["${var.security_group_ids}"]
-  # }
 
   access_policies = <<POLICY
 {
@@ -51,9 +48,9 @@ POLICY
   ]
 
   cognito_options = {
-    enabled = true
-    user_pool_id = "${var.cognito_user_pool_id}"
+    enabled          = true
+    user_pool_id     = "${var.cognito_user_pool_id}"
     identity_pool_id = "${var.cognito_identity_pool_id}"
-    role_arn = "${aws_iam_role.demo-iam-role-es.arn}"
+    role_arn         = "${aws_iam_role.demo-iam-role-es.arn}"
   }
 }

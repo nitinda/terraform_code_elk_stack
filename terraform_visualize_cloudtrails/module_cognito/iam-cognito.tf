@@ -1,6 +1,8 @@
 resource "aws_iam_role" "demo-iam-role-cognito" {
   name = "terraform-iam-role-cognito-authenticated"
 
+  tags = "${var.common_tags}"
+
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",

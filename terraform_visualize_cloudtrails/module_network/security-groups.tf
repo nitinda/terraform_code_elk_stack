@@ -24,7 +24,7 @@ resource "aws_security_group" "demo-security-group" {
     cidr_blocks     = ["0.0.0.0/0"]
   }
 
-  tags {
-    Name = "terraform-demo-es-security-group"
-  }
+  tags = "${merge(var.common_tags, map(
+    "Name", "terraform-demo-es-security-group",
+  ))}"
 }

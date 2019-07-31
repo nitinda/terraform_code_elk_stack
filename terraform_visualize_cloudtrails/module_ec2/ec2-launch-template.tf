@@ -23,15 +23,15 @@ resource "aws_launch_template" "demo-launch-template-ec2" {
   
   tag_specifications {
     resource_type = "instance"
-    tags = {
-      Name = "terraform-demo-launch-template-ec2"
-    }
+    tags = "${merge(var.common_tags, map(
+      "Name", "terraform-demo-launch-template-ec2",
+    ))}"
   }
   tag_specifications {
     resource_type = "volume"
-    tags = {
-      Name = "terraform-demo-launch-template-ec2"
-    }
+    tags = "${merge(var.common_tags, map(
+      "Name", "terraform-demo-launch-template-ec2",
+    ))}"
   }
 
   user_data = "${base64encode("${data.template_file.demo-launch-template-userdata.rendered}")}"

@@ -13,6 +13,11 @@ variable "public_subnets" {
 }
 
 
+variable common_tags {
+  description = "Reource Tags"
+  type = "map"
+}
+
 #### ALB
 
 variable "acm_domain_name" {
@@ -28,3 +33,4 @@ variable "vpc_id" {
 #   types    = ["AMAZON_ISSUED"]
 #   domain   = "${var.acm_domain_name}"
 # }
+

@@ -21,7 +21,9 @@ resource "aws_s3_bucket_policy" "demo-s3-policy" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::${aws_s3_bucket.demo-s3.id}/*",
+            "Resource": [
+              "arn:aws:s3:::${aws_s3_bucket.demo-s3.id}/AWSLogs/${data.aws_caller_identity.demo-current.account_id}/*"
+            ],
             "Condition": {
                 "StringEquals": {
                     "s3:x-amz-acl": "bucket-owner-full-control"
@@ -31,4 +33,6 @@ resource "aws_s3_bucket_policy" "demo-s3-policy" {
     ]
 }
 POLICY
+
+depends_on = ["aws_s3_bucket.demo-s3"]
 }

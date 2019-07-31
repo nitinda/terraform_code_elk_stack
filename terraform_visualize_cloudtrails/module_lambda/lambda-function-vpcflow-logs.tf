@@ -14,7 +14,10 @@ resource "aws_lambda_function" "demo-lambda-vpcflow-logstoelasticsearch" {
             es_endpoint = "${var.es_endpoint}"
         }
     }
+
+    tags = "${var.common_tags}"
 }
+
 
 resource "aws_lambda_permission" "demo-lambda-permission-vpcflow-logstoelasticsearch" {
   statement_id = "terraform-demo-lambda-permission-vpcflow-logs-cloudwatch-allow"

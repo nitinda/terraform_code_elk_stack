@@ -6,9 +6,7 @@ resource "aws_lb" "demo-application-loadbalancer" {
   subnets            = ["${var.public_subnets}"]
 
   enable_deletion_protection = false
-  tags = {
-    Environment = "terraform-demo-application-loadbalancer"
-  }
+  tags = "${var.common_tags}"
 }
 
 resource "aws_lb_listener" "demo-application-loadbalancer-listener" {
@@ -35,4 +33,5 @@ resource "aws_lb_target_group" "demo-application-loadbalancer-target-group" {
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
   deregistration_delay = 0
+  tags = "${var.common_tags}"
 }

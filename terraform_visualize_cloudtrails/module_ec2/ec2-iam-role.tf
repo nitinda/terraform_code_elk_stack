@@ -1,5 +1,6 @@
 resource "aws_iam_role" "demo-iam-role-ec2" {
   name = "terraform-demo-iam-role-ec2"
+  tags = "${var.common_tags}"
 
   assume_role_policy = <<POLICY
 {
@@ -15,6 +16,7 @@ resource "aws_iam_role" "demo-iam-role-ec2" {
   ]
 }
 POLICY
+
 }
 
 resource "aws_iam_role_policy_attachment" "demo-iam-role-policy-attachment-ec2-AmazonEC2RoleforSSM" {

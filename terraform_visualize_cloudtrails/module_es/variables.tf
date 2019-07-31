@@ -24,3 +24,9 @@ variable "cognito_iam_role_arn" {
 }
 
 variable depends_on { default = [], type = "list"}
+
+
+variable common_tags {
+  description = "Reource Tags"
+  type = "map"
+}

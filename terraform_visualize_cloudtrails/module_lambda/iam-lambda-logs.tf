@@ -1,6 +1,8 @@
 resource "aws_iam_role" "demo-iam-role-lambda-wiringfunction" {
   name = "terraform-demo-iam-role-lambda-wiringfunction"
 
+  tags = "${var.common_tags}"
+
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",

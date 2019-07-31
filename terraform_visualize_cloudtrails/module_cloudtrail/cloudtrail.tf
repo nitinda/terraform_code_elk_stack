@@ -12,6 +12,11 @@ resource "aws_cloudtrail" "demo-cloudtrail" {
       values = ["${var.s3_bucket_arn}/"]
     }
   }
-  cloud_watch_logs_group_arn = "${var.cloud_watch_logs_group_arn_cloudtrail}"
-  cloud_watch_logs_role_arn  = "${var.cloud_watch_logs_role_arn}"
+
+  depends_on = ["null_resource.demo-delay"]
+
+  tags = "${var.common_tags}"
+
+  # cloud_watch_logs_group_arn = "${var.cloud_watch_logs_group_arn_cloudtrail}"
+  # cloud_watch_logs_role_arn  = "${var.cloud_watch_logs_role_arn}"
 }

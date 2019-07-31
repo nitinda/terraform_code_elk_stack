@@ -1,6 +1,8 @@
 resource "aws_iam_role" "demo-iam-role-cloudtrail-cloudwatch-log-group" {
   name = "terraform-demo-iam-role-cloudwatch-log-group"
 
+  tags = "${var.common_tags}"
+
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",

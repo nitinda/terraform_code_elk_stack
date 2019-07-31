@@ -9,3 +9,13 @@ variable "vpc_cidr_block" {
   default     = "198.19.0.0/16"
 }
 
+variable common_tags {
+  description = "Reource Tags"
+  type = "map"
+  default = {
+    Project = "ELK POC"
+    Owner   = "Platform Team"
+    Environment = "prod"
+    BusinessUnit = "Platform Team"
+  }  
+}
